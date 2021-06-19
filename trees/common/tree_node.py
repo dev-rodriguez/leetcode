@@ -1,8 +1,6 @@
 
-"Adding Comments"
-class BSTNode:
-    def __init__(self, value=None):
-        self.left = None
-        self.right = None
-        self.val = value
-
+class TreeNode:
+    def __init__(self, value):
+        self.left: TreeNode = None
+        self.right: TreeNode = None
+        self.value: int = value
