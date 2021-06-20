@@ -1,4 +1,6 @@
 from common.tree_node import TreeNode
+from common.queue import Queue
+
 
 class BinaryTree:
     def __init__(self, root: None):
@@ -74,3 +76,37 @@ class BinaryTree:
         output = []
         self.__post_order(current_node=self.root, output=output)
         return output
+
+    def __bfs(self, queue: Queue, output: list):
+        while queue.length() != 0:
+            node = queue.get()
+            output.append(node.value)
+            queue.qpop()
+
+            if node.left is not None:
+                queue.insert(node.left)
+            if node.right is not None:
+                queue.insert(node.right)
+
+        return output
+
+    def bfs(self):
+        queue = Queue()
+        output = []
+        queue.insert(self.root)
+
+        self.__bfs(queue=queue, output=output)
+
+        return output
+
+    def height(self, node):
+        if node is None:
+            return -1
+        else:
+            left_height =  self.height(node.left)
+            right_height = self.height(node.right)
+
+        return 1 + max(left_height, right_height)
+
+    def size(self):
+        return len(self.dfs_pre_order())
