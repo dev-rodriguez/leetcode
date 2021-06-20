@@ -38,3 +38,39 @@ class BinaryTree:
             return False
         else:
             return self.__search(value=value, current_node=self.root)
+
+    def __pre_order(self, current_node: TreeNode, output: list):
+        if current_node is not None:
+            output.append(current_node.value)
+            self.__pre_order(current_node=current_node.left, output=output)
+            self.__pre_order(current_node=current_node.right, output=output)
+        return output
+
+    def dfs_pre_order(self):
+        output = []
+        self.__pre_order(self.root, output)
+        return output
+
+    def __in_order(self, current_node: TreeNode, output: list):
+        if current_node is not None:
+            self.__in_order(current_node=current_node.left, output=output)
+            output.append(current_node.value)
+            self.__in_order(current_node=current_node.right, output=output)
+        return output
+
+    def dfs_in_order(self):
+        output = []
+        self.__in_order(current_node=self.root, output=output)
+        return output
+
+    def __post_order(self, current_node: TreeNode, output: list):
+        if current_node is not None:
+            self.__post_order(current_node=current_node.left, output=output)
+            self.__post_order(current_node=current_node.right, output=output)
+            output.append(current_node.value)
+        return output
+
+    def dfs_post_order(self):
+        output = []
+        self.__post_order(current_node=self.root, output=output)
+        return output
